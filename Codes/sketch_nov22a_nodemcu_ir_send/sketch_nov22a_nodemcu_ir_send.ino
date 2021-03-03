@@ -5,7 +5,7 @@
 int D0_INPUTPIN = 16;
 int D1_OUTPUTLED = 5;
 
-const char* networkSSID = ""; // WiFi name
+const char* networkSSID = "TP-LINK_E6565C"; // WiFi name
 const char* networkPwd = ""; // WiFi password
 
 String deviceName = "NodeMCU + IR sensor";

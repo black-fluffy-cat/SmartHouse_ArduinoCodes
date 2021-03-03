@@ -1,5 +1,3 @@
-
- 
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_Sensor.h>
@@ -13,30 +11,45 @@
 Adafruit_BMP280 bme; // I2C
 //Adafruit_BMP280 bme(BMP_CS); // hardware SPI
 //Adafruit_BMP280 bme(BMP_CS, BMP_MOSI, BMP_MISO, BMP_SCK);
- 
+
+float bmeTemperature = 0;
+float bmePressure = 0;
+float bmeAltitude = 0;
+
 void setup() {
-Serial.begin(9600);
-Serial.println(F("BMP280 test"));
- 
-if (!bme.begin()) {
-Serial.println("Could not find a valid BMP280 sensor, check wiring!");
-while (1);
+  Serial.begin(9600);
+  Serial.println(F("BMP280 test"));
+   
+  if (!bme.begin()) {
+    Serial.println("Could not find a valid BMP280 sensor, check wiring!");
+    while (1);
+  } 
 }
+ 
+void loop() { 
+  updateReadings();
+  printReadings();
+  
+  Serial.println();
+  delay(2000);
 }
- 
-void loop() {
-Serial.print("Temperature = ");
-Serial.print(bme.readTemperature());
-Serial.println(" *C");
- 
-Serial.print("Pressure = ");
-Serial.print(bme.readPressure());
-Serial.println(" Pa");
- 
-Serial.print("Approx altitude = ");
-Serial.print(bme.readAltitude(1013.25)); // this should be adjusted to your local forcase
-Serial.println(" m");
- 
-Serial.println();
-delay(2000);
+
+void updateReadings() {
+  bmeTemperature = bme.readTemperature();
+  bmePressure = bme.readPressure();
+  bmeAltitude = bme.readAltitude();
+}
+
+void printReadings() {
+  Serial.print("Temperature = ");
+  Serial.print(bmeTemperature);
+  Serial.println(" *C");
+   
+  Serial.print("Pressure = ");
+  Serial.print(bmePressure);
+  Serial.println(" Pa");
+   
+  Serial.print("Approx altitude = ");
+  Serial.print(bmeAltitude);
+  Serial.println(" m");
 }

@@ -21,12 +21,12 @@ float bmePressurePa = 0;
 float bmePressurehPa = 0;
 float bmeAltitude = 0;
 
-const char* networkSSID = ""; // WiFi name
+const char* networkSSID = "TP-LINK_E6565C_RASP"; // WiFi name
 const char* networkPwd = ""; // WiFi password
 
-String deviceName = "NodeMCU_+_BME280_sensor";
+String deviceName = "NodeMCU_+_BME280_second_sensor";
 
-String serverUrl = "http://192.168.0.110:8080";
+String serverUrl = "http://10.42.0.1:8080";
 String dataEndpoint = serverUrl + "/bme280Data";
 String heartbeatEndpoint = serverUrl+ "/heartbeat";
 
